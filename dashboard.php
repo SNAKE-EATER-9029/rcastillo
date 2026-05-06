@@ -58,7 +58,7 @@ $username = $_SESSION['username'];
 <main id="main" class="container py-5 mt-4">
     <div class="text-center mb-5 text-white">
         <h1 class="display-4 fw-bold">Panel de Administración</h1>
-        <p class="lead">Selecciona una categoría para gestionar la base de datos</p>
+        <p class="lead">Aqui puedes registrar libros, autores, prestamos y devoluciones.</p>
     </div>
 
     <div class="row g-4 justify-content-center">
