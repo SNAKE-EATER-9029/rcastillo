@@ -1,8 +1,10 @@
 body {
-    /* 1. Descomentas la línea (quitas las diagonales) */
-    background-color: var(--bs-cyan); 
-
-    /* 2. IMPORTANTE: Asegura que el fondo cubra toda la pantalla */
+    /* El ../ significa "salir de la carpeta css" */
+    background-image: url('../img/fondo.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     min-height: 100vh;
     margin: 0;
 }
