@@ -2,7 +2,7 @@
 
 body {
     /* 1. Imagen de fondo - Asegúrate de que el nombre coincida con tu archivo */
-    background-image: url('../img/fondo.jpg'); 
+    background-image: url('../img/fondo.png'); 
     
     /* 2. Ajustes para que la imagen cubra toda la pantalla */
     background-size: cover;          /* La imagen se estira para cubrir todo */
