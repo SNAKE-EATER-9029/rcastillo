@@ -1,4 +1,8 @@
-body{
-/*    background-color: var(--bs-cyan);*/
-    
+body {
+    /* 1. Descomentas la línea (quitas las diagonales) */
+    background-color: var(--bs-cyan); 
+
+    /* 2. IMPORTANTE: Asegura que el fondo cubra toda la pantalla */
+    min-height: 100vh;
+    margin: 0;
 }
