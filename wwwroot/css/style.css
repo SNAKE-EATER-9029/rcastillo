@@ -1,10 +1,55 @@
+/* style.css - Diseño con fondo de imagen y login transparente */
+
 body {
-    /* El ../ significa "salir de la carpeta css" */
+    /* 1. Imagen de fondo - Asegúrate de que el nombre coincida con tu archivo */
     background-image: url('../img/fondo.jpg'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    
+    /* 2. Ajustes para que la imagen cubra toda la pantalla */
+    background-size: cover;          /* La imagen se estira para cubrir todo */
+    background-position: center;     /* La imagen se mantiene centrada */
+    background-repeat: no-repeat;    /* Evita que la imagen se duplique */
+    background-attachment: fixed;    /* El fondo se queda quieto al hacer scroll */
+    
+    /* 3. Altura mínima y márgenes */
     min-height: 100vh;
     margin: 0;
+    
+    /* 4. Centrado del contenido (opcional, ayuda a Bootstrap) */
+    display: flex;
+    flex-direction: column;
+}
+
+#main {
+    flex: 1;
+    display: flex;
+    align-items: center; /* Centra el login verticalmente */
+}
+
+/* 5. Clase para el cajón transparente (Efecto Glassmorphism) */
+.login-box-transparente {
+    /* Fondo blanco con 65% de opacidad */
+    background-color: rgba(255, 255, 255, 0.65) !important;
+    
+    /* Efecto de desenfoque de lo que está detrás */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Compatibilidad con Safari */
+    
+    /* Borde sutil y redondeado */
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 1rem !important; /* Esquinas redondeadas */
+    
+    /* Sombra para dar profundidad sobre el fondo */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 6. Ajustes de texto para mejorar la legibilidad */
+.login-box-transparente h1, 
+.login-box-transparente .form-label, 
+.login-box-transparente .small {
+    color: #212529 !important; /* Un gris muy oscuro casi negro */
+    font-weight: 500;
+}
+
+.login-box-transparente .text-muted {
+    color: #495057 !important; /* Gris intermedio para subtítulos */
 }
