@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-// 1. Protección de ruta: si no hay sesión, mandarlo al login
+// 1. Protección de ruta: si no hay sesión iniciada, redirigir al login
 if (!isset($_SESSION['id'])) {
     header("Location: index.html");
     exit();
@@ -15,85 +15,101 @@ $username = $_SESSION['username'];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Sistema de Biblioteca</title>
+    <title>Panel de Control - Biblioteca</title>
     <!-- Bootstrap CSS -->
     <link href="./wwwroot/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Tu CSS con el fondo y la transparencia -->
+    <!-- Tu archivo CSS con el fondo y la clase .login-box-transparente -->
     <link href="./wwwroot/css/style.css" rel="stylesheet">
     <!-- Iconos de Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+        /* Ajuste extra para asegurar que las tarjetas se vean bien sobre el fondo */
+        .card {
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
 </head>
 <body>
 
+<!-- Barra de navegación superior -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
     <div class="container">
-        <a class="navbar-brand" href="#">📚 Mi Biblioteca</a>
-        <div class="navbar-text text-white">
-            Bienvenido, <strong><?php echo htmlspecialchars($username); ?></strong>
+        <a class="navbar-brand" href="#">📚 Sistema Bibliotecario</a>
+        <div class="ms-auto d-flex align-items-center">
+            <span class="text-white me-3 d-none d-md-inline">
+                Bienvenido, <strong><?php echo htmlspecialchars($username); ?></strong>
+            </span>
+            <a href="logout.php" class="btn btn-outline-danger btn-sm">
+                <i class="bi bi-box-arrow-right"></i> Salir
+            </a>
         </div>
-        <a href="logout.php" class="btn btn-outline-danger btn-sm ms-3">Cerrar Sesión</a>
     </div>
 </nav>
 
-<main id="main" class="container py-5">
+<!-- Contenido Principal -->
+<main id="main" class="container py-5 mt-4">
+    <div class="text-center mb-5 text-white">
+        <h1 class="display-4 fw-bold">Panel de Administración</h1>
+        <p class="lead">Selecciona una categoría para gestionar la base de datos</p>
+    </div>
+
     <div class="row g-4 justify-content-center">
         
         <!-- Tarjeta de Libros -->
-        <div class="col-md-4 col-sm-6">
-            <div class="card h-100 login-box-transparente text-center p-4 border-0">
+        <div class="col-md-5 col-lg-4">
+            <div class="card h-100 login-box-transparente text-center p-4 border-0 shadow">
                 <div class="card-body">
-                    <i class="bi bi-journal-bookmark fs-1 mb-3 d-block text-primary"></i>
-                    <h5 class="card-title">Libros</h5>
-                    <p class="card-text text-muted small">Gestionar catálogo, títulos y páginas.</p>
-                    <a href="libros.php" class="btn btn-primary w-100">Entrar</a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Tarjeta de Usuarios -->
-        <div class="col-md-4 col-sm-6">
-            <div class="card h-100 login-box-transparente text-center p-4 border-0">
-                <div class="card-body">
-                    <i class="bi bi-people fs-1 mb-3 d-block text-primary"></i>
-                    <h5 class="card-title">Usuarios</h5>
-                    <p class="card-text text-muted small">Administrar lectores y sus correos.</p>
-                    <a href="usuarios.php" class="btn btn-primary w-100">Entrar</a>
+                    <i class="bi bi-book fs-1 mb-3 d-block text-primary"></i>
+                    <h5 class="card-title fw-bold">Libros</h5>
+                    <p class="card-text text-muted">Añadir, editar y catalogar títulos.</p>
+                    <a href="libros.php" class="btn btn-primary w-100 shadow-sm">Entrar</a>
                 </div>
             </div>
         </div>
 
         <!-- Tarjeta de Autores -->
-        <div class="col-md-4 col-sm-6">
-            <div class="card h-100 login-box-transparente text-center p-4 border-0">
+        <div class="col-md-5 col-lg-4">
+            <div class="card h-100 login-box-transparente text-center p-4 border-0 shadow">
                 <div class="card-body">
-                    <i class="bi bi-person-badge fs-1 mb-3 d-block text-primary"></i>
-                    <h5 class="card-title">Autores</h5>
-                    <p class="card-text text-muted small">Registrar y listar autores del sistema.</p>
-                    <a href="autores.php" class="btn btn-primary w-100">Entrar</a>
+                    <i class="bi bi-person-lines-fill fs-1 mb-3 d-block text-primary"></i>
+                    <h5 class="card-title fw-bold">Autores</h5>
+                    <p class="card-text text-muted">Listado y registro de escritores.</p>
+                    <a href="autores.php" class="btn btn-primary w-100 shadow-sm">Entrar</a>
                 </div>
             </div>
         </div>
 
+        <!-- Salto de línea para separar filas -->
+        <div class="w-100"></div>
+
         <!-- Tarjeta de Préstamos -->
-        <div class="col-md-4 col-sm-6">
-            <div class="card h-100 login-box-transparente text-center p-4 border-0">
+        <div class="col-md-5 col-lg-4">
+            <div class="card h-100 login-box-transparente text-center p-4 border-0 shadow">
                 <div class="card-body">
                     <i class="bi bi-arrow-left-right fs-1 mb-3 d-block text-success"></i>
-                    <h5 class="card-title">Préstamos</h5>
-                    <p class="card-text text-muted small">Control de libros prestados a usuarios.</p>
-                    <a href="prestamos.php" class="btn btn-success w-100">Ver Préstamos</a>
+                    <h5 class="card-title fw-bold text-success">Préstamos</h5>
+                    <p class="card-text text-muted">Asignar libros a lectores registrados.</p>
+                    <a href="prestamos.php" class="btn btn-success w-100 shadow-sm">Ver Préstamos</a>
                 </div>
             </div>
         </div>
 
         <!-- Tarjeta de Devoluciones -->
-        <div class="col-md-4 col-sm-6">
-            <div class="card h-100 login-box-transparente text-center p-4 border-0">
+        <div class="col-md-5 col-lg-4">
+            <div class="card h-100 login-box-transparente text-center p-4 border-0 shadow">
                 <div class="card-body">
-                    <i class="bi bi-arrow-return-left fs-1 mb-3 d-block text-warning"></i>
-                    <h5 class="card-title">Devoluciones</h5>
-                    <p class="card-text text-muted small">Registro de libros regresados y estado.</p>
-                    <a href="devoluciones.php" class="btn btn-warning w-100 text-dark">Gestionar</a>
+                    <i class="bi bi-calendar-check fs-1 mb-3 d-block text-warning"></i>
+                    <h5 class="card-title fw-bold text-warning">Devoluciones</h5>
+                    <p class="card-text text-muted">Registro de entregas y penalizaciones.</p>
+                    <a href="devoluciones.php" class="btn btn-warning w-100 shadow-sm">Gestionar</a>
                 </div>
             </div>
         </div>
@@ -101,8 +117,10 @@ $username = $_SESSION['username'];
     </div>
 </main>
 
-<footer class="mt-auto py-3 text-center text-white">
-    <small>© 2026 Sistema de Biblioteca - Panel de Administración</small>
+<footer class="mt-auto py-3 text-center text-white-50">
+    <div class="container">
+        <small>© 2026 Biblioteca Central - Panel Administrativo</small>
+    </div>
 </footer>
 
 </body>
