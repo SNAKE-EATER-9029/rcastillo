@@ -1,55 +1,44 @@
-/* style.css - Diseño con fondo de imagen y login transparente */
+/* ============================================================
+   ESTILOS PARA FECHAS Y TABLAS (VISIBILIDAD MÁXIMA)
+   ============================================================ */
 
-body {
-    /* 1. Imagen de fondo - Asegúrate de que el nombre coincida con tu archivo */
-    background-image: url('../img/fondo.png'); 
-    
-    /* 2. Ajustes para que la imagen cubra toda la pantalla */
-    background-size: cover;          /* La imagen se estira para cubrir todo */
-    background-position: center;     /* La imagen se mantiene centrada */
-    background-repeat: no-repeat;    /* Evita que la imagen se duplique */
-    background-attachment: fixed;    /* El fondo se queda quieto al hacer scroll */
-    
-    /* 3. Altura mínima y márgenes */
-    min-height: 100vh;
-    margin: 0;
-    
-    /* 4. Centrado del contenido (opcional, ayuda a Bootstrap) */
-    display: flex;
-    flex-direction: column;
+/* 1. Forzar color blanco a los textos generales de la tabla */
+.table-dark td, 
+.table-dark th {
+    color: #ffffff !important;
+    vertical-align: middle;
 }
 
-#main {
-    flex: 1;
-    display: flex;
-    align-items: center; /* Centra el login verticalmente */
+/* 2. Estilo de "Fecha Brillante" (Cian Neón) */
+/* Aplica a cualquier elemento con clase .small-fecha o .small dentro de tablas */
+.table-dark .small, 
+.small-fecha {
+    color: #00d4ff !important; /* Azul cian brillante */
+    font-weight: bold !important;
+    font-size: 0.85rem;
+    text-shadow: 0px 0px 10px rgba(0, 212, 255, 0.6); /* Brillo neón */
+    display: inline-block;
 }
 
-/* 5. Clase para el cajón transparente (Efecto Glassmorphism) */
-.login-box-transparente {
-    /* Fondo blanco con 65% de opacidad */
-    background-color: rgba(255, 255, 255, 0.65) !important;
-    
-    /* Efecto de desenfoque de lo que está detrás */
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px); /* Compatibilidad con Safari */
-    
-    /* Borde sutil y redondeado */
-    border: 1px solid rgba(255, 255, 255, 0.3) !important;
-    border-radius: 1rem !important; /* Esquinas redondeadas */
-    
-    /* Sombra para dar profundidad sobre el fondo */
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2) !important;
+/* 3. Estilo para las Observaciones/Notas (Verde suave) */
+.table-dark .text-info, 
+.table-dark .fst-italic {
+    color: #a2ffce !important; /* Un verde menta para que no se pierda */
+    text-shadow: 0px 0px 5px rgba(162, 255, 206, 0.3);
 }
 
-/* 6. Ajustes de texto para mejorar la legibilidad */
+/* 4. Mejora del contenedor de la tabla (Efecto cristal oscuro) */
+.table-responsive {
+    background: rgba(0, 0, 0, 0.4); /* Oscurece un poco el fondo de la tabla */
+    border-radius: 10px;
+    padding: 10px;
+    backdrop-filter: blur(5px);
+}
+
+/* 5. Mantener el LOGIN legible (Letras oscuras en caja blanca) */
 .login-box-transparente h1, 
-.login-box-transparente .form-label, 
-.login-box-transparente .small {
-    color: #212529 !important; /* Un gris muy oscuro casi negro */
-    font-weight: 500;
-}
-
-.login-box-transparente .text-muted {
-    color: #495057 !important; /* Gris intermedio para subtítulos */
+.login-box-transparente h4,
+.login-box-transparente .form-label {
+    color: #1a1d20 !important; /* Casi negro para contraste en el blanco */
+    text-shadow: none !important; /* Quitar brillo en el login */
 }
