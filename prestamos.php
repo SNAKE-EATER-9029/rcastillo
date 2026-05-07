@@ -13,7 +13,7 @@ $mensaje = "";
 // 1. Registrar el préstamo
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['registrar_prestamo'])) {
     $id_libro = $_POST['id_libro'];
-    $id_usuario = $_POST['id_usuario'];
+    $id_usuario = $_POST['id'];
 
     try {
         $sql = "INSERT INTO prestamos (id_libro, id_usuario) VALUES (:lib, :usu)";
