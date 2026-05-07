@@ -1,39 +1,78 @@
 
-.table-dark td, 
-.table-dark th {
-    color: #ffffff !important;
-    vertical-align: middle;
+body {
+    background-image: url('../img/fondo.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#main {
+    flex: 1;
+    display: flex;
+    align-items: center;
 }
 
 
-.table-dark .small, 
-.small-fecha {
-    color: #00d4ff !important; /* Azul cian brillante */
-    font-weight: bold !important;
-    font-size: 0.85rem;
-    text-shadow: 0px 0px 10px rgba(0, 212, 255, 0.6); /* Brillo neón */
-    display: inline-block;
-}
-
-
-.table-dark .text-info, 
-.table-dark .fst-italic {
-    color: #a2ffce !important; 
-    text-shadow: 0px 0px 5px rgba(162, 255, 206, 0.3);
-}
-
-
-.table-responsive {
-    background: rgba(0, 0, 0, 0.4); 
-    border-radius: 10px;
-    padding: 10px;
-    backdrop-filter: blur(5px);
+.login-box-transparente {
+    background-color: rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 1rem !important;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3) !important;
 }
 
 
 .login-box-transparente h1, 
-.login-box-transparente h4,
+.login-box-transparente h4, 
 .login-box-transparente .form-label {
-    color: #1a1d20 !important; 
-    text-shadow: none !important; 
+    color: #1a1d20 !important;
+    font-weight: 600;
+}
+
+
+.table-dark {
+    background-color: rgba(0, 0, 0, 0.5) !important;
+    border-radius: 10px;
+}
+
+.table-dark td, 
+.table-dark th {
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+
+.small-fecha {
+    color: #00d4ff !important;
+    font-weight: bold !important;
+    font-size: 0.9rem;
+    text-shadow: 0px 0px 10px rgba(0, 212, 255, 0.8), 
+                 0px 0px 20px rgba(0, 212, 255, 0.4);
+    display: inline-block;
+}
+
+
+.text-info, .fst-italic {
+    color: #2ecc71 !important;
+    text-shadow: 0px 0px 5px rgba(46, 204, 113, 0.4);
+}
+
+
+.form-control, .form-select {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+
+.login-box-transparente .form-control {
+    background-color: rgba(255, 255, 255, 0.9) !important;
+    color: #333 !important;
 }
