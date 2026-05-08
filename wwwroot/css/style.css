@@ -1,58 +1,24 @@
-
-body {
-    background-image: url('../img/fondo.png'); 
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Segoe UI', sans-serif;
-}
-
-
 .login-box-transparente {
-    background: rgba(255, 255, 255, 0.65); /*  */
-    backdrop-filter: blur(12px);
+    /* Fondo con efecto de cristal y desenfoque */
+    background: rgba(255, 255, 255, 0.65) !important;
+    backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.4);
-    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 20px !important;
+    
+    /* AJUSTE DE ANCHO: Esto evitará que la caja se vea aplastada */
+    width: 100%;
+    max-width: 400px; /* Ancho ideal según tu imagen de referencia */
+    min-width: 320px;
+    
+    /* Espaciado interno */
     padding: 40px;
-    width: 100%;
-    max-width: 450px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    text-align: center;
+    margin: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3) !important;
 }
 
-
-h2 { color: #1a1d20; font-weight: 700; margin-bottom: 5px; }
-p.subtitle { color: #444; margin-bottom: 25px; font-size: 0.9rem; }
-
-/* INPUTS ESTILO LIMPIO */
+/* Para que los inputs ocupen todo el ancho de la caja nueva */
 .form-control {
-    background: rgba(255, 255, 255, 0.9) !important;
-    border: 1px solid #ccc !important;
-    border-radius: 8px !important;
-    padding: 12px;
-    color: #333 !important;
-}
-
-
-.btn-principal {
-    background-color: #FFB100 !important;
-    color: #1a1d20 !important;
-    border: none !important;
-    font-weight: bold;
-    padding: 12px;
-    width: 100%;
-    border-radius: 8px;
-    transition: 0.3s;
-    text-transform: uppercase;
-}
-
-.btn-principal:hover {
-    background-color: #FFD000 !important;
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(255, 177, 0, 0.4);
+    width: 100% !important;
+    margin-bottom: 15px;
 }
