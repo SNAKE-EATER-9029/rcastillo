@@ -1,57 +1,98 @@
+<?php
+// 1. Lógica de validación de usuario
+require_once 'db.php'; 
+
+$error = ""; // Para mostrar mensajes si algo falla
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = $_POST['email'];
+    $pwd = $_POST['pwd'];
+    
+    $db = conectarDB();
+
+    try {
+        // Buscamos al usuario por correo 
+        $sql = "SELECT id, password, email FROM usuarios WHERE email = :email";
+        $query = $db->prepare($sql);
+        $query->execute(['email' => $email]);
+        $usuario = $query->fetch(PDO::FETCH_ASSOC);
+
+        if ($usuario) {
+            // Verificamos la contraseña encriptada 
+            $verify = password_verify($pwd, $usuario['password']);
+            if ($verify) {
+                session_start();
+                $_SESSION['username'] = $usuario['email'];
+                $_SESSION['id'] = $usuario['id'];
+                header("Location: dashboard.php"); // Redirección al éxito 
+                exit();
+            } else {
+                $error = "La contraseña es incorrecta.";
+            }
+        } else {
+            $error = "No se encontraron datos para este correo.";
+        }
+    } catch (PDOException $e) {
+        $error = "Error de base de datos: " . $e->getMessage();
+    }
+}
+?>
+
 <!doctype html>
-<html lang="en">
-  <head>
+<html lang="es">
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Biblioteca Digital - Iniciar Sesión</title>
+    
     <link href="./wwwroot/css/bootstrap.min.css" rel="stylesheet">
     <link href="./wwwroot/css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="./wwwroot/css/bootstrap-icons.min.css">
+    
     <script src="./wwwroot/js/jquery-4.0.0.min.js"></script>
     <script src="./wwwroot/js/script.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <main id="main">
-      <div class="container-lg d-flex flex-column">
-        <div class="row align-items-center justify-content-center no-gutters">
-          <div class="col-md-7 col-lg-5">
-            <div class="shadow mt-5 p-5 login-box-transparente">
-              <div class="w-100 text-center">
-                <h1 class="display-6"> Iniciar sesión</h1>
-                <p class="text-muted">Use sus credenciales para iniciar sesión</p>
-              </div>
-              
-              <div class="col-12">
-                <!-- CAMBIO 1: Agregamos la etiqueta FORM con el destino y el método -->
-                <form action="login.php" method="POST">
+        <div class="container-lg d-flex flex-column min-vh-100 justify-content-center">
+            <div class="row align-items-center justify-content-center">
+                <div class="col-12 col-md-6 col-lg-4">
+                    
+                    <div class="login-box-transparente p-5 text-center">
+                        <div class="w-100 mb-4">
+                            <h1 class="display-6 fw-bold">Biblioteca Digital</h1>
+                            <p class="subtitle text-muted">Inicia sesión para continuar</p>
+                        </div>
+                        
+                        <?php if($error): ?>
+                            <div class="alert alert-danger py-2 small"><?php echo $error; ?></div>
+                        <?php endif; ?>
 
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <!-- CAMBIO 2: Agregamos name="email" para que PHP lo reconozca -->
-                    <input class="form-control" id="email" name="email" required>
-                  </div>
+                        <form action="index.php" method="POST" class="text-start">
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Correo electrónico</label>
+                                <input type="email" name="email" class="form-control" id="email" placeholder="nombre@ejemplo.com" required>
+                            </div>
 
-                  <div class="mb-3">
-                    <label for="pwd" class="form-label">Contraseña</label>
-                    <!-- CAMBIO 3: Agregamos name="pwd" para que PHP lo reconozca -->
-                    <input class="form-control" type="password" id="pwd" name="pwd" required>
-                  </div>
+                            <div class="mb-3">
+                                <label for="pwd" class="form-label">Contraseña</label>
+                                <input type="password" name="pwd" class="form-control" id="pwd" placeholder="••••••••" required>
+                            </div>
 
-                  <div class="d-flex justify-content-between py-3">
-                    <div>
-                      <span class="small text-muted">¿No tienes cuenta?</span>
-                      <a class="small" href="registro.html"> Crear cuenta</a>
-                    </div>
-                    <!-- CAMBIO 4: Cambiamos onclick por type="submit" para activar el formulario -->
-                    <button type="submit" class="btn btn-outline-primary"> Iniciar sesión</button>
-                  </div>
+                            <div class="d-grid gap-2 py-3">
+                                <button type="submit" class="btn-principal">Inicia sesión</button>
+                            </div>
 
-                </form> <!-- CAMBIO 5: Cerramos la etiqueta FORM -->
-              </div>  
+                            <div class="text-center mt-2">
+                                <span class="small text-muted">¿Aún no tienes cuenta?</span>
+                                <a class="footer-link fw-bold" href="registro.php"> Crea tu cuenta</a>
+                            </div>
+                        </form>
+                    </div> 
+                    
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </main>
-  </body>
+</body>
 </html>
